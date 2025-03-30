@@ -4,25 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>成績計算器</title>
+    <style>
+        /* 設定整體頁面樣式 */
+        body {
+            font-family: Arial, sans-serif; /* 字體 */
+            background-color: #f4f4f4; /* 背景顏色 */
+            margin: 0;
+            padding: 20px; /* 內邊距 */
+        }
+        h1, h2 {
+            color: #333; /* 標題顏色 */
+        }
+        .container {
+            background: white; /* 容器背景顏色 */
+            padding: 20px; /* 容器內邊距 */
+            border-radius: 8px; /* 圓角 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+            max-width: 600px; /* 最大寬度 */
+            margin: auto; /* 自動邊距置中 */
+        }
+        label {
+            display: block; /* 標籤顯示為塊級元素 */
+            margin: 10px 0 5px; /* 外邊距 */
+        }
+        input {
+            width: 100%; /* 輸入框寬度 */
+            padding: 10px; /* 輸入框內邊距 */
+            margin-bottom: 15px; /* 下方外邊距 */
+            border: 1px solid #ccc; /* 邊框樣式 */
+            border-radius: 4px; /* 圓角 */
+        }
+        button {
+            background-color: #28a745; /* 按鈕背景顏色 */
+            color: white; /* 按鈕文字顏色 */
+            padding: 10px 15px; /* 按鈕內邊距 */
+            border: none; /* 無邊框 */
+            border-radius: 4px; /* 圓角 */
+            cursor: pointer; /* 游標樣式 */
+            font-size: 16px; /* 字體大小 */
+        }
+        button:hover {
+            background-color: #218838; /* 懸停時背景顏色 */
+        }
+        #result {
+            margin-top: 20px; /* 上方外邊距 */
+            font-size: 20px; /* 字體大小 */
+            font-weight: bold; /* 字體加粗 */
+        }
+        #feedback {
+            margin-top: 10px; /* 上方外邊距 */
+            font-size: 18px; /* 字體大小 */
+            color: #555; /* 文字顏色 */
+        }
+    </style>
     <script>
+        // 計算成績的函數
         function calculateScores() {
             // 取得段考成績
             const a1 = parseInt(document.getElementById("exam1").value);
             const a2 = parseInt(document.getElementById("exam2").value);
             const a3 = parseInt(document.getElementById("exam3").value);
-            const score1 = ((a1 + a2 + a3) / 3) * 0.6;
+            const score1 = ((a1 + a2 + a3) / 3) * 0.6; // 計算段考加權成績
 
             // 取得平時成績
             const b1 = parseInt(document.getElementById("practice1").value);
             const b2 = parseInt(document.getElementById("practice2").value);
             const b3 = parseInt(document.getElementById("practice3").value);
-            const score2 = ((b1 + b2 + b3) / 3) * 0.4;
+            const score2 = ((b1 + b2 + b3) / 3) * 0.4; // 計算平時加權成績
 
             // 計算總成績
             const totalScore = score1 + score2;
-            document.getElementById("result").innerHTML = `總成績: ${totalScore.toFixed(2)}`;
+            document.getElementById("result").innerHTML = `總成績: ${totalScore.toFixed(2)}`; // 顯示總成績
 
-            // 評價
+            // 根據總成績給出評價
             let feedback = "";
             if (totalScore >= 80) {
                 feedback = "你還偷捲上了<br>讚喔! 不用補考";
@@ -33,31 +87,33 @@
             } else {
                 feedback = "你超菜 連補考都不行 等重修吧";
             }
-            document.getElementById("feedback").innerHTML = feedback;
+            document.getElementById("feedback").innerHTML = feedback; // 顯示評價
         }
     </script>
 </head>
 <body>
-    <h1>成績計算器</h1>
-    <h2>段考成績</h2>
-    <label for="exam1">第一次段考成績:</label>
-    <input type="number" id="exam1" required><br>
-    <label for="exam2">第二次段考成績:</label>
-    <input type="number" id="exam2" required><br>
-    <label for="exam3">第三次段考成績:</label>
-    <input type="number" id="exam3" required><br>
+    <div class="container">
+        <h1>成績計算器</h1>
+        <h2>段考成績</h2>
+        <label for="exam1">第一次段考成績:</label>
+        <input type="number" id="exam1" required>
+        <label for="exam2">第二次段考成績:</label>
+        <input type="number" id="exam2" required>
+        <label for="exam3">第三次段考成績:</label>
+        <input type="number" id="exam3" required>
 
-    <h2>平時成績</h2>
-    <label for="practice1">第一次平時成績:</label>
-    <input type="number" id="practice1" required><br>
-    <label for="practice2">第二次平時成績:</label>
-    <input type="number" id="practice2" required><br>
-    <label for="practice3">第三次平時成績:</label>
-    <input type="number" id="practice3" required><br>
+        <h2>平時成績</h2>
+        <label for="practice1">第一次平時成績:</label>
+        <input type="number" id="practice1" required>
+        <label for="practice2">第二次平時成績:</label>
+        <input type="number" id="practice2" required>
+        <label for="practice3">第三次平時成績:</label>
+        <input type="number" id="practice3" required>
 
-    <button onclick="calculateScores()">計算總成績</button>
+        <button onclick="calculateScores()">計算總成績</button>
 
-    <h2 id="result"></h2>
-    <div id="feedback"></div>
+        <div id="result"></div> <!-- 顯示總成績 -->
+        <div id="feedback"></div> <!-- 顯示評價 -->
+    </div>
 </body>
 </html>
