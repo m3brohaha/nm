@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成績計算器</title>
+    <script>
+        function calculateScores() {
+            // 取得段考成績
+            const a1 = parseInt(document.getElementById("exam1").value);
+            const a2 = parseInt(document.getElementById("exam2").value);
+            const a3 = parseInt(document.getElementById("exam3").value);
+            const score1 = ((a1 + a2 + a3) / 3) * 0.6;
+
+            // 取得平時成績
+            const b1 = parseInt(document.getElementById("practice1").value);
+            const b2 = parseInt(document.getElementById("practice2").value);
+            const b3 = parseInt(document.getElementById("practice3").value);
+            const score2 = ((b1 + b2 + b3) / 3) * 0.4;
+
+            // 計算總成績
+            const totalScore = score1 + score2;
+            document.getElementById("result").innerHTML = `總成績: ${totalScore.toFixed(2)}`;
+
+            //結果 
+            let feedback = "";
+            if (totalScore >= 80) {
+                feedback = "你還偷捲上了<br>讚喔! 不用補考";
+            } else if (totalScore >= 60) {
+                feedback = "讚喔! 不用補考";
+            } else if (totalScore >= 40) {
+                feedback = "去補考吧";
+            } else {
+                feedback = "你超菜 連補考都不行 等重修吧";
+            }
+            document.getElementById("feedback").innerHTML = feedback;
+        }
+    </script>
+</head>
+<body>
+    <h1>成績計算器</h1>
+    <h2>段考成績</h2>
+    <label for="exam1">第一次段考成績:</label>
+    <input type="number" id="exam1" required><br>
+    <label for="exam2">第二次段考成績:</label>
+    <input type="number" id="exam2" required><br>
+    <label for="exam3">第三次段考成績:</label>
+    <input type="number" id="exam3" required><br>
+
+    <h2>平時成績</h2>
+    <label for="practice1">第一次平時成績:</label>
+    <input type="number" id="practice1" required><br>
+    <label for="practice2">第二次平時成績:</label>
+    <input type="number" id="practice2" required><br>
+    <label for="practice3">第三次平時成績:</label>
+    <input type="number" id="practice3" required><br>
+
+    <button onclick="calculateScores()">計算總成績</button>
+
+    <h2 id="result"></h2>
+    <div id="feedback"></div>
+</body>
+</html>
