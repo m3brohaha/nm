@@ -38,7 +38,7 @@ async def load_extensions():
 async def main():
     async with bot:
         await load_extensions()
-        await bot.start("MTM0OTM3MTg4MDQzOTY3NzAzMQ.Gzkp8h.NXQvCCkJ3EFkTqf_jGH4R0UpEDgeHZqg3q4Jds")
+        await bot.start("")
 
 # 確定執行此py檔才會執行
 if __name__ == "__main__":
